@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+    mysql-master:
+      image: 'mysql/mysql-server:latest'
+      container_name: db-master
+      volumes:
+          - ~/db-replication/master/build_env/mysql/master.cnf:/etc/my.cnf
+          - ~/db-replication/master/build_env/mysql/master.sql:/docker-entrypoint-initdb.d/master.sql
+          - ~/db-replication/master/build_env/mysql/datadir:/var/lib/mysql
+      environment:
+          - MYSQL_REPLICATION_MODE=master
+          - MYSQL_ROOT_PASSWORD=Kohc9hai
+          - MYSQL_REPLICATION_USER=replica
+          - MYSQL_REPLICATION_PASSWORD=Pass_1111
+      ports:
+          - "10.104.1.161:6603:3306"

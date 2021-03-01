@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    mysql-slave:
+      image: 'mysql/mysql-server:latest'
+      container_name: db-slave
+      volumes:
+          - ~/db-replication/slave/build_env/mysql/slave.cnf:/etc/my.cnf
+          - ~/db-replication/slave/build_env/mysql/slave.sql:/docker-entrypoint-initdb.d/slave.sql
+          - ~/db-replication/slave/build_env/mysql/datadir:/var/lib/mysql
+      environment:
+          - MYSQL_REPLICATION_MODE=slave
+          - MYSQL_ROOT_PASSWORD=Kohc9hai
+          - MYSQL_REPLICATION_USER=replica
+          - MYSQL_REPLICATION_PASSWORD=Pass_1111
+          - MYSQL_MASTER_PORT=10.104.1.62
+          - MYSQL_MASTER_PORT_NUMBER=6603
+      ports:
+          - "10.104.1.161:6603:3306"

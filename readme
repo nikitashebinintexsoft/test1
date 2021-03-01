@@ -1,0 +1,2 @@
+Master-slave replication in MySQL database, inside of docker container.
+Made with the help of docker-compose.
